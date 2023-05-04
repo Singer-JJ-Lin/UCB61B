@@ -7,9 +7,9 @@ public class Planet {
 
     public double yyVel;
 
-    private double mass;
+    public double mass;
 
-    private String imgFileName;
+    public String imgFileName;
 
     private static final double G = 6.67e-11;
 
