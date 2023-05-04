@@ -61,8 +61,8 @@ public class TestPlanetConstructor {
         checkEquals(yyPos, p.yyPos, "yyPos");
         checkEquals(xxVel ,p.xxVel, "xxVel");
         checkEquals(yyVel, p.yyVel, "yyVel");
-        checkEquals(mass, p.mass, "mass");
-        checkStringEquals(imgFileName, p.imgFileName, "path to image");
+        checkEquals(mass, p.getMass(), "mass");
+        checkStringEquals(imgFileName, p.getImgFileName(), "path to image");
 
         System.out.println("Checking second Planet constructor...");
 
@@ -71,7 +71,7 @@ public class TestPlanetConstructor {
         checkEquals(p.yyPos, pCopy.yyPos, "yyPos");
         checkEquals(p.xxVel, pCopy.xxVel, "xxVel");
         checkEquals(p.yyVel, pCopy.yyVel, "yyVel");
-        checkEquals(p.mass, pCopy.mass, "mass");
-        checkStringEquals(p.imgFileName, pCopy.imgFileName, "path to image");
+        checkEquals(p.getMass(), pCopy.getMass(), "mass");
+        checkStringEquals(p.getImgFileName(), pCopy.getImgFileName(), "path to image");
     }
 }

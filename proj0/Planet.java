@@ -84,4 +84,12 @@ public class Planet {
     public void draw(){
         StdDraw.picture(xxPos, yyPos, "images/" + imgFileName);
     }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public String getImgFileName() {
+        return imgFileName;
+    }
 }

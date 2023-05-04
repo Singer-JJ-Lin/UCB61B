@@ -46,11 +46,11 @@ public class TestReadPlanets {
                     System.out.println("Advice: Your Mercury doesn't have the right yyPos!");
                     randomChecksOkay = false;
                 }
-            } else if ("sun.gif".equals(p.imgFileName)) {
+            } else if ("sun.gif".equals(p.getImgFileName())) {
                 foundSun = true;
-            } else if ("venus.gif".equals(p.imgFileName)) {
+            } else if ("venus.gif".equals(p.getImgFileName())) {
                 foundVenus = true;
-                if (!doubleEquals(p.mass, 4.8690e+24, 0.01)) {
+                if (!doubleEquals(p.getMass(), 4.8690e+24, 0.01)) {
                     System.out.println("Advice: Your Venus doesn't have the right mass!");
                     randomChecksOkay = false;
                 }
