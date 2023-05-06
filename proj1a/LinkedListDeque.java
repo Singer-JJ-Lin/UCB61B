@@ -2,7 +2,7 @@
  * @author 老爷保号
  */
 public class LinkedListDeque<T> {
-    public class Node {
+    private class Node {
         private T item;
         private Node pre;
 

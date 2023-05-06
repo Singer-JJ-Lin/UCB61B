@@ -1,7 +1,7 @@
 public class ArrayDeque<T> {
-    public final int INITIAL_SIZE = 16;
+    private final int INITIAL_SIZE = 16;
 
-    public final int INCREMENT = 8;
+    private final int INCREMENT = 8;
 
     private T[] array;
     /** size of deque **/
@@ -13,7 +13,7 @@ public class ArrayDeque<T> {
     private int rear;
 
     public ArrayDeque() {
-        array = (T[])new Object[INITIAL_SIZE];
+        array = (T[]) new Object[INITIAL_SIZE];
         size = 0;
         length = INITIAL_SIZE;
         front = rear = 0;
@@ -28,8 +28,8 @@ public class ArrayDeque<T> {
     }
 
     private void grow() {
-        T[] newArray = (T[])new Object[length + INCREMENT];
-        for(int i = 0; i < size; i++, front = (front + 1) % length) {
+        T[] newArray = (T[]) new Object[length + INCREMENT];
+        for (int i = 0; i < size; i++, front = (front + 1) % length) {
             newArray[i] = array[front];
         }
 
@@ -39,7 +39,7 @@ public class ArrayDeque<T> {
     }
 
     public void addFirst(T item) {
-        if(isFull()) {
+        if (isFull()) {
             grow();
         }
         front = minusOne(front);
@@ -48,7 +48,7 @@ public class ArrayDeque<T> {
     }
 
     public void addLast(T item) {
-        if(isFull()) {
+        if (isFull()) {
             grow();
         }
 
@@ -58,7 +58,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 
@@ -69,7 +69,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
 
@@ -92,12 +92,12 @@ public class ArrayDeque<T> {
     }
 
     public T get(int index) {
-        if(index >= size) {
+        if (index >= size) {
             return null;
         }
 
         int ptr = front;
-        for(int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++){
             ptr = plusOne(ptr, length);
         }
         return array[ptr];
