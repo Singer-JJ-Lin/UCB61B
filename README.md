@@ -1,1 +1,1 @@
-# Berkly UCB CS61B Course
+# University of California, Berkeley CS61B Course
