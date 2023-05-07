@@ -15,7 +15,7 @@ public class ArrayDeque<T> {
     public ArrayDeque() {
         array = (T[]) new Object[INITIAL_SIZE];
         size = 0;
-        length = INITIAL_SIZE;
+        setLength(INITIAL_SIZE);
         front = rear = 0;
     }
 
@@ -35,7 +35,7 @@ public class ArrayDeque<T> {
 
         array = null;
         array = newArray;
-        length = length + INCREMENT;
+        setLength(length + INCREMENT);
         rear = size + 1;
     }
 
@@ -49,7 +49,7 @@ public class ArrayDeque<T> {
         rear = size + 1;
         array = null;
         array = newArray;
-        length /= 2;
+        setLength(length / 2);
     }
 
     public void addFirst(T item) {
@@ -81,6 +81,7 @@ public class ArrayDeque<T> {
         }
 
         T result = array[front];
+        array[front] = null;
         front = plusOne(front, length);
         size--;
         return result;
@@ -90,13 +91,14 @@ public class ArrayDeque<T> {
         if (length >= 16 && length / size >= 4) {
             shrink();
         }
-        
+
         if (isEmpty()) {
             return null;
         }
 
         rear = minusOne(rear);
         T result = array[rear];
+        array[rear] = null;
         size--;
         return result;
     }
@@ -132,5 +134,9 @@ public class ArrayDeque<T> {
             ptr = plusOne(ptr, length);
         }
         System.out.println();
+    }
+
+    public void setLength(int length) {
+        this.length = length;
     }
 }
