@@ -80,12 +80,15 @@ public class LinkedListDequeTest {
 
     public static void iterativeTest() {
         LinkedListDeque<Integer> deque = new LinkedListDeque<>();
-        deque.addFirst(0);
+        deque.addLast(0);
         deque.addLast(1);
-        deque.addLast(2);
-        deque.addLast(3);
-        deque.removeFirst();
-        Integer integer = deque.get(0);
+        deque.printDeque();
+        deque.addFirst(2);
+        deque.printDeque();
+        deque.addFirst(3);
+        deque.printDeque();
+        int item = deque.removeLast();
+        int integer = deque.get(1);
 
         System.out.println(integer);
     }

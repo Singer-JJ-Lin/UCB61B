@@ -33,7 +33,7 @@ public class LinkedListDeque<T> {
 
     public void addFirst(T item) {
         final Node<T> f = first;
-        final Node<T> newNode = new Node<>(item, null, null);
+        final Node<T> newNode = new Node<>(item, null, first);
         first = newNode;
         if (f == null) {
             last = newNode;
@@ -45,10 +45,10 @@ public class LinkedListDeque<T> {
 
     public void addLast(T item) {
         final Node<T> l = last;
-        final Node<T> newNode = new Node<>(item, null, null);
+        final Node<T> newNode = new Node<>(item, last, null);
         last = newNode;
         if (l == null) {
-           first = newNode;
+            first = newNode;
         } else {
             l.next = newNode;
         }
