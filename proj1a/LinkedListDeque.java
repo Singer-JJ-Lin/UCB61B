@@ -1,22 +1,22 @@
 /**
  * @author 老爷保号
  */
-public class LinkedListDeque<E> {
-    private static class Node<E> {
-        E item;
-        Node<E> prev;
-        Node<E> next;
+public class LinkedListDeque<T> {
+    private static class Node<T> {
+        T item;
+        Node<T> prev;
+        Node<T> next;
 
-        Node(E element, Node<E> prev, Node<E> next) {
+        Node(T element, Node<T> prev, Node<T> next) {
             this.item = element;
             this.next = next;
             this.prev = prev;
         }
     }
 
-    private Node<E> first;
+    private Node<T> first;
 
-    private Node<E> last;
+    private Node<T> last;
 
     private int size = 0;
 
@@ -31,21 +31,21 @@ public class LinkedListDeque<E> {
         return size;
     }
 
-    public void addFirst(E item) {
-        final Node<E> f = first;
-        final Node<E> newNode = new Node<>(item, null, null);
+    public void addFirst(T item) {
+        final Node<T> f = first;
+        final Node<T> newNode = new Node<>(item, null, null);
         first = newNode;
         if (f == null) {
-           last = newNode;
+            last = newNode;
         } else {
             f.prev = newNode;
         }
         size++;
     }
 
-    public void addLast(E item) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<>(item, null, null);
+    public void addLast(T item) {
+        final Node<T> l = last;
+        final Node<T> newNode = new Node<>(item, null, null);
         last = newNode;
         if (l == null) {
            first = newNode;
@@ -55,13 +55,13 @@ public class LinkedListDeque<E> {
         size++;
     }
 
-    public E removeFirst() {
+    public T removeFirst() {
         if (first == null) {
             return null;
         }
 
-        final E element = first.item;
-        final Node<E> next = first.next;
+        final T element = first.item;
+        final Node<T> next = first.next;
         first.item = null;
         first.next = null;
         first = next;
@@ -76,13 +76,13 @@ public class LinkedListDeque<E> {
         return element;
     }
 
-    public E removeLast() {
+    public T removeLast() {
         if (last == null) {
             return null;
         }
 
-        final E element = last.item;
-        final Node<E> prev = last.prev;
+        final T element = last.item;
+        final Node<T> prev = last.prev;
         last.item = null;
         last.prev = null;
         last = prev;
@@ -96,25 +96,25 @@ public class LinkedListDeque<E> {
         return element;
     }
 
-    public E get(int index) {
+    public T get(int index) {
         if (!checkElementIndex(index)) {
             return null;
         }
 
+        Node<T> ptr;
         if (index < (size >> 1)) {
-            Node<E> ptr = first;
-            for(int i = 0; i < index; i++) {
+            ptr = first;
+            for (int i = 0; i < index; i++) {
                 ptr = ptr.next;
             }
-            return ptr.item;
         } else {
-            Node<E> ptr = last;
-            for(int i = size - 1; i > index; i--) {
+            ptr = last;
+            for (int i = size - 1; i > index; i--) {
                 ptr = ptr.prev;
             }
 
-            return ptr.item;
         }
+        return ptr.item;
     }
 
     private boolean checkElementIndex(int index) {
@@ -122,7 +122,7 @@ public class LinkedListDeque<E> {
     }
 
     public void printDeque() {
-        Node<E> ptr = first;
+        Node<T> ptr = first;
         while (ptr != null) {
             System.out.print(ptr.item + " ");
             ptr = ptr.next;
@@ -130,7 +130,7 @@ public class LinkedListDeque<E> {
         System.out.println();
     }
 
-    private E getRecursiveHelp(Node<E> start, int index) {
+    private T getRecursiveHelp(Node<T> start, int index) {
         if (index == 0) {
             return start.item;
         } else {
@@ -138,7 +138,7 @@ public class LinkedListDeque<E> {
         }
     }
 
-    public E getRecursive(int index) {
+    public T getRecursive(int index) {
         if (!checkElementIndex(index)) {
             return null;
         }
