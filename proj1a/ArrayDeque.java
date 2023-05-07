@@ -1,5 +1,5 @@
 public class ArrayDeque<T> {
-    private final int INITIAL_SIZE = 16;
+    private final int INITIAL_SIZE = 8;
 
     private final int INCREMENT = 8;
 
@@ -72,6 +72,10 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
+        if (length >= 16 && length / size >= 4) {
+            shrink();
+        }
+
         if (isEmpty()) {
             return null;
         }
@@ -83,6 +87,10 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
+        if (length >= 16 && length / size >= 4) {
+            shrink();
+        }
+        
         if (isEmpty()) {
             return null;
         }
