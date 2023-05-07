@@ -79,13 +79,15 @@ public class LinkedListDequeTest {
 
 
     public static void iterativeTest() {
-        LinkedListDeque<String> deque = new LinkedListDeque<String>();
-        deque.addFirst("第一");
-        deque.addLast("第二");
-        deque.addLast("第三");
-        deque.printDeque();
-        String result = deque.get(3);
-        System.out.println(result);
+        LinkedListDeque<Integer> deque = new LinkedListDeque<>();
+        deque.addFirst(0);
+        deque.addLast(1);
+        deque.addLast(2);
+        deque.addLast(3);
+        deque.removeFirst();
+        Integer integer = deque.get(0);
+
+        System.out.println(integer);
     }
 
     public static void main(String[] args) {

@@ -39,6 +39,19 @@ public class ArrayDeque<T> {
         rear = size + 1;
     }
 
+    private void shrink() {
+        T[] newArray = (T[]) new Object[length >> 1];
+        for (int i = 0; i < size; i++, front = (front + 1) % length << 1) {
+            newArray[i] = array[front];
+        }
+
+        front = 0;
+        rear = size + 1;
+        array = null;
+        array = newArray;
+        length /= 2;
+    }
+
     public void addFirst(T item) {
         if (isFull()) {
             grow();
@@ -98,7 +111,7 @@ public class ArrayDeque<T> {
         }
 
         int ptr = front;
-        for (int i = 0; i < index; i++){
+        for (int i = 0; i < index; i++) {
             ptr = plusOne(ptr, length);
         }
         return array[ptr];
@@ -106,7 +119,7 @@ public class ArrayDeque<T> {
 
     public void printDeque() {
         int ptr = front;
-        while(ptr != rear) {
+        while (ptr != rear) {
             System.out.print(array[ptr] + " ");
             ptr = plusOne(ptr, length);
         }
