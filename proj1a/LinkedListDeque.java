@@ -1,5 +1,6 @@
-import java.util.LinkedList;
-
+/**
+ * @author 老爷保号
+ */
 public class LinkedListDeque<E> {
     private static class Node<E> {
         E item;
@@ -24,6 +25,10 @@ public class LinkedListDeque<E> {
 
     public boolean isEmpty() {
         return size == 0;
+    }
+
+    public int size() {
+        return size;
     }
 
     public void addFirst(E item) {
