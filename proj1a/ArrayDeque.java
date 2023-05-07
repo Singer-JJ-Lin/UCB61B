@@ -36,6 +36,7 @@ public class ArrayDeque<T> {
         array = null;
         array = newArray;
         length = length + INCREMENT;
+        rear = size + 1;
     }
 
     public void addFirst(T item) {
@@ -73,8 +74,8 @@ public class ArrayDeque<T> {
             return null;
         }
 
-        T result = array[rear];
         rear = minusOne(rear);
+        T result = array[rear];
         size--;
         return result;
     }

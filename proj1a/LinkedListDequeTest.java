@@ -77,9 +77,21 @@ public class LinkedListDequeTest {
         printTestStatus(passed);
     }
 
+
+    public static void iterativeTest() {
+        LinkedListDeque<String> deque = new LinkedListDeque<String>();
+        deque.addFirst("第一");
+        deque.addLast("第二");
+        deque.addLast("第三");
+        deque.printDeque();
+        String result = deque.get(3);
+        System.out.println(result);
+    }
+
     public static void main(String[] args) {
         System.out.println("Running tests.\n");
-        addIsEmptySizeTest();
-        addRemoveTest();
+//        addIsEmptySizeTest();
+//        addRemoveTest();
+        iterativeTest();
     }
 }

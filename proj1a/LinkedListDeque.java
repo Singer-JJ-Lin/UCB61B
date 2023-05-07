@@ -103,14 +103,14 @@ public class LinkedListDeque<T> {
         }
         if(index < size / 2) {
             Node ptr = first;
-            for(int i = 1; i < size / 2 && i != index; i++) {
+            for(int i = 0; i < size / 2 && i <= index; i++) {
                 ptr = ptr.next;
             }
 
             return ptr.item;
         } else {
             Node ptr = last;
-            for(int i = size; i >= size / 2 && i != index; i--) {
+            for(int i = size - 1; i >= size / 2 && i >= index; i--) {
                 last = last.prev;
             }
             return last.item;
