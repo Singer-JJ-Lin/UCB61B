@@ -1,4 +1,3 @@
-import javax.management.ObjectName;
 
 public class ArrayDeque<T> {
     private T[] array;
@@ -14,7 +13,7 @@ public class ArrayDeque<T> {
     private int rear;
 
     public ArrayDeque() {
-        array = (T[])new Object[INITIAL_CAPACITY];
+        array = (T[]) new Object[INITIAL_CAPACITY];
         size = 0;
         capacity = INITIAL_CAPACITY;
         front = rear = 0;
@@ -24,7 +23,7 @@ public class ArrayDeque<T> {
         return size == 0;
     }
 
-    public boolean isFull() {
+    private boolean isFull() {
         return size == capacity;
     }
 
@@ -41,13 +40,13 @@ public class ArrayDeque<T> {
     }
 
     private void grow() {
-        T[] newArray = (T[])new Object[capacity << 1];
-        for(int i = 0; i < capacity; i++) {
+        T[] newArray = (T[]) new Object[capacity << 1];
+        for (int i = 0; i < capacity; i++) {
             newArray[i] = array[front];
             front = plusOne(front);
         }
         front = 0;
-        rear = capacity;
+        rear = size;
         capacity = capacity << 1;
         array = newArray;
     }
@@ -128,4 +127,4 @@ public class ArrayDeque<T> {
         }
         System.out.println();
     }
- }
+}

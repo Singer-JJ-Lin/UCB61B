@@ -37,7 +37,33 @@ public class ArrayDequeTest {
             }
         }
     }
+
+    public static void getTest() {
+        ArrayDeque<Integer> deque = new ArrayDeque<>();
+        deque.addFirst(0);
+        deque.addLast(1);
+        deque.removeFirst();
+        deque.removeFirst();
+        deque.addFirst(4);
+        deque.removeLast();
+        deque.addFirst(6);
+        deque.removeFirst();
+        deque.addFirst(8);
+        deque.addLast(9);
+        deque.addFirst(10);
+        deque.removeLast();
+        deque.addLast(12);
+        deque.addFirst(13);
+        deque.addLast(14);
+        deque.addFirst(15);
+        deque.addFirst(16);
+        deque.get(6);
+        deque.addLast(18);
+        deque.addFirst(19);
+        deque.addLast(20);
+        deque.get(8);
+    }
     public static void main(String[] args) {
-        randomAddLastRemoveFirstIsEmptyTest();
+        getTest();
     }
 }
