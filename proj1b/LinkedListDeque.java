@@ -1,6 +1,6 @@
 import java.util.LinkedList;
 
-public class LinkedListDeque <Item> extends LinkedList <Item> implements Deque <Item>{
+public class LinkedListDeque<Item> extends LinkedList<Item> implements Deque<Item> {
     private static class Node<Item> {
         Item item;
         Node<Item> prev;
