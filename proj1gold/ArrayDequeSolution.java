@@ -14,6 +14,7 @@ public class ArrayDequeSolution<Item> extends LinkedList<Item> {
         return get(i);
     }
 
+    @Override
     public Item removeFirst() {
         try {
             return super.removeFirst();
@@ -22,6 +23,7 @@ public class ArrayDequeSolution<Item> extends LinkedList<Item> {
         }
     }
 
+    @Override
     public Item removeLast() {
         try {
             return super.removeLast();
