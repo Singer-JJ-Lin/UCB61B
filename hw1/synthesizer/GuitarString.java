@@ -20,7 +20,7 @@ public class GuitarString {
     private BoundedQueue<Double> buffer;
 
     public GuitarString(double frequency) {
-        int capacity = (int)Math.round(SR / frequency);
+        int capacity = (int) Math.round(SR / frequency);
         buffer = new ArrayRingBuffer<Double>(capacity);
         for (int i = 0; i < capacity; i++) {
             buffer.enqueue(0.0);
@@ -40,7 +40,8 @@ public class GuitarString {
     }
 
     /**
-     * Advance the simulation one time step by performing one iteration of the Karplus-Strong algorithm.
+     * Advance the simulation one time step by performing one
+     * iteration of the Karplus-Strong algorithm.
      */
     public void tic() {
         Double dequeue = buffer.dequeue();

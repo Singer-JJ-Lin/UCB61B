@@ -33,11 +33,11 @@ public class GuitarHero {
             }
 
             double sample = 0;
-            for (GuitarString string : guitarStrings){
+            for (GuitarString string : guitarStrings) {
                 sample += string.sample();
             }
             StdAudio.play(sample);
-            for (GuitarString string : guitarStrings){
+            for (GuitarString string : guitarStrings) {
                 string.tic();
             }
         }
