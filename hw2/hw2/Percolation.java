@@ -32,7 +32,7 @@ public class Percolation {
         }
 
         this.N = N;
-        virtualTopSite = N * N ;
+        virtualTopSite = N * N;
         virtualBottomSite = virtualTopSite + 1;
 
         wqu = new WeightedQuickUnionUF(N * N + 2);
