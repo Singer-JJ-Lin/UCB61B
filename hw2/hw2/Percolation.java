@@ -27,13 +27,12 @@ public class Percolation {
      * @param N
      */
     public Percolation(int N) {
-
         if (N <= 0) {
             throw new IllegalArgumentException();
         }
 
         this.N = N;
-        virtualTopSite = N * N + 1;
+        virtualTopSite = N * N ;
         virtualBottomSite = virtualTopSite + 1;
 
         wqu = new WeightedQuickUnionUF(N * N + 2);
