@@ -138,14 +138,13 @@ public class Percolation {
     }
 
     private void connect(int row, int col, int newRow, int newCol) {
-        try {
-            checkCoordinate(newRow, newCol);
-            if (isOpen(newRow, newCol)) {
-                wqu.connected(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
-                wqu2.connected(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
-            }
-        } catch(IndexOutOfBoundsException ignored) {
+        if (row < 0 || row >= N || col < 0 || col >= N) {
+            return;
+        }
 
+        if (isOpen(newRow, newCol)) {
+            wqu.connected(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
+            wqu2.connected(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
         }
     }
 
