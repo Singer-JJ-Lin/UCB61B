@@ -68,7 +68,6 @@ public class Percolation {
             for (int[] direction : directions) {
                 connect(row, col, row + direction[0], col + direction[1]);
             }
-
         }
     }
 
@@ -129,11 +128,11 @@ public class Percolation {
     }
 
     private void connect(int row, int col, int newRow, int newCol) {
-        if (row < 0 || row >= N || col < 0 || col >= N) {
+        if (newRow < 0 || newRow >= N || newCol < 0 || newCol >= N) {
             return;
         }
 
-        if (flags[row][col]) {
+        if (flags[newRow][newCol]) {
             wqu.union(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
             wqu2.union(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
         }
