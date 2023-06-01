@@ -1,7 +1,5 @@
 package hw2;
 
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 /**
@@ -140,5 +138,9 @@ public class Percolation {
             wqu.union(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
             wqu2.union(coordinateToIndex(row, col), coordinateToIndex(newRow, newCol));
         }
+    }
+
+    public static void main(String[] args) {
+
     }
 }
