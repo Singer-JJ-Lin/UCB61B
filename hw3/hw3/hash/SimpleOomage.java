@@ -17,7 +17,6 @@ public class SimpleOomage implements Oomage {
 
     @Override
     public boolean equals(Object o) {
-        // TODO: Write this method.
         if (o == this) {
             return true;
         }

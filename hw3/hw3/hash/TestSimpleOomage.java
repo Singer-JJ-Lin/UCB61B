@@ -1,9 +1,6 @@
 package hw3.hash;
 
 import org.junit.Test;
-
-
-import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
@@ -24,21 +21,17 @@ public class TestSimpleOomage {
 
     @Test
     public void testHashCodePerfect() {
-        /* TODO: Write a test that ensures the hashCode is perfect,
-          meaning no two SimpleOomages should EVER have the same
-          hashCode UNLESS they have the same red, blue, and green values!
-         */
-        List<SimpleOomage> OomageList = new ArrayList<>();
+        List<SimpleOomage> oomageList = new ArrayList<>();
         for (int red = 0; red <= 255; red += 5) {
-            for (int green = 0; green <= 255; green+= 5) {
+            for (int green = 0; green <= 255; green += 5) {
                 for (int blue = 0; blue <= 255; blue += 5) {
-                    OomageList.add(new SimpleOomage(red, green, blue));
+                    oomageList.add(new SimpleOomage(red, green, blue));
                 }
             }
         }
 
         List<Integer> t = new ArrayList<>();
-        for (SimpleOomage so : OomageList) {
+        for (SimpleOomage so : oomageList) {
             assertFalse(t.contains(so.hashCode()));
             t.add(so.hashCode());
         }
@@ -65,7 +58,6 @@ public class TestSimpleOomage {
         assertTrue(hashSet.contains(ooA2));
     }
 
-    /* TODO: Uncomment this test after you finish haveNiceHashCode Spread in OomageTestUtility */
     @Test
     public void testRandomOomagesHashCodeSpread() {
         List<Oomage> oomages = new ArrayList<>();
