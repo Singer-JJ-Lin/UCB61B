@@ -4,32 +4,46 @@ import edu.princeton.cs.algs4.StdRandom;
 import edu.princeton.cs.algs4.StdDraw;
 
 
+/**
+ * @author 老爷保号
+ */
 public class SimpleOomage implements Oomage {
     protected int red;
     protected int green;
     protected int blue;
 
     private static final double WIDTH = 0.01;
-    private static final boolean USE_PERFECT_HASH = false;
+    private static final boolean USE_PERFECT_HASH = true;
 
     @Override
     public boolean equals(Object o) {
         // TODO: Write this method.
-        return false;
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof SimpleOomage)) {
+            return false;
+        }
+
+        SimpleOomage so = (SimpleOomage) o;
+        return this.red == so.red && this.blue == so.blue && this.green == so.green;
     }
 
     /* Uncomment this method after you've written
        equals and failed the testHashCodeAndEqualsConsistency
-       test.
+       test.*/
     @Override
     public int hashCode() {
         if (!USE_PERFECT_HASH) {
             return red + green + blue;
         } else {
-            // TODO: Write a perfect hash function for Simple Oomages.
-            return 0;
+            int res = Integer.hashCode(red / 5);
+            res = res * 53 + Integer.hashCode(green / 5);
+            res = res * 71 + Integer.hashCode(blue / 5);
+            return res;
         }
-    }*/
+    }
 
     public SimpleOomage(int r, int g, int b) {
         if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255) {
@@ -63,7 +77,7 @@ public class SimpleOomage implements Oomage {
         randomSimpleOomage().draw(0.25, 0.75, 1);
         randomSimpleOomage().draw(0.75, 0.25, 1);
     }
-
+    @Override
     public String toString() {
         return "R: " + red + ", G: " + green + ", B: " + blue;
     }
