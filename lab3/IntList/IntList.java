@@ -125,11 +125,15 @@ public class IntList {
             return false;
         }
 
-        IntList l = (IntList) o;
-        for (IntList p = this; p != null && l != null; p = p.rest, l = l.rest) {
+        IntList l = (IntList) o, p = this;
+        for (; p != null && l != null; p = p.rest, l = l.rest) {
             if (p.first != l.first) {
                 return false;
             }
+        }
+
+        if (p != null || l != null) {
+            return false;
         }
 
         return true;
