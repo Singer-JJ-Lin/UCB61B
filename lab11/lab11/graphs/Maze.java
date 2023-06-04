@@ -21,6 +21,7 @@ public class Maze implements Observer {
     /**
      * Updates the drawing of the maze.
      */
+    @Override
     public void update(Observable o, Object arg) {
         MazeExplorer me = (MazeExplorer) o;
         StdDraw.clear();
