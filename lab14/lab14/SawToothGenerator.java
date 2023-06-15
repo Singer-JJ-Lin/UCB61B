@@ -11,9 +11,9 @@ public class SawToothGenerator implements Generator {
 
     private int state;
 
-    public SawToothGenerator(int period, int state) {
+    public SawToothGenerator(int period) {
         this.period = period;
-        this.state = state;
+        this.state = 0;
     }
 
     @Override
