@@ -1,7 +1,12 @@
 package hw4.puzzle;
 import edu.princeton.cs.algs4.MinPQ;
 
-import java.util.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Stack;
+import java.util.Comparator;
 
 /**
  * @author 老爷保号
@@ -66,9 +71,9 @@ public class Solver {
 
         @Override
         public int compare(SearchNode o1, SearchNode o2) {
-            int estimatedDistanceToGoalOfO1 = 1;
-            int estimatedDistanceToGoalOfO2 = 1;
-            return o1.numberOfMove + estimatedDistanceToGoalOfO1 - o2.numberOfMove - estimatedDistanceToGoalOfO2;
+            int edtgOfO1 = 1;
+            int edtgOfO2 = 1;
+            return o1.numberOfMove + edtgOfO1 - o2.numberOfMove - edtgOfO2;
         }
 
         private int estimatedDistanceToGoal(SearchNode sn) {

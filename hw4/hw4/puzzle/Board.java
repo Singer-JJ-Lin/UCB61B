@@ -3,7 +3,7 @@ package hw4.puzzle;
 import edu.princeton.cs.algs4.Queue;
 import java.util.Arrays;
 
-public class Board implements WorldState{
+public class Board implements WorldState {
     private final int BLANK = 0;
     private int[][] tiles;
     private int N;
@@ -178,7 +178,7 @@ public class Board implements WorldState{
         s.append(N + "\n");
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                s.append(String.format("%2d ", tileAt(i,j)));
+                s.append(String.format("%2d ", tileAt(i, j)));
             }
             s.append("\n");
         }
@@ -197,10 +197,7 @@ public class Board implements WorldState{
     }
 
     private int[] indexToCoordinate(int index) {
-        return new int[] {
-                (index - 1) / N,
-                (index - 1) % N
-        };
+        return new int[] {(index - 1) / N, (index - 1) % N};
     }
 
 }
