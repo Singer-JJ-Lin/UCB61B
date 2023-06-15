@@ -115,7 +115,7 @@ public class Board implements WorldState {
 
                 if (tile != coordinateToIndex(i, j)) {
                     int[] coordinate = indexToCoordinate(tile);
-                    manhattanScore += Math.abs(i - coordinate[0]) + Math.abs(j - coordinate[j]);
+                    manhattanScore += Math.abs(i - coordinate[0]) + Math.abs(j - coordinate[1]);
                 }
             }
         }
@@ -193,7 +193,7 @@ public class Board implements WorldState {
     }
 
     private int coordinateToIndex(int i, int j) {
-        return i * N + j;
+        return i * N + j + 1;
     }
 
     private int[] indexToCoordinate(int index) {
