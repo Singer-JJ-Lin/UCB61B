@@ -18,27 +18,27 @@ public class Solver {
 
     public Solver(WorldState initial) {
         MinPQ<SearchNode> pq = new MinPQ<>(new SearchNodeComparator());
-        SearchNode initialNode = new SearchNode(initial, 0, null);
-        pq.insert(initialNode);
+        SearchNode current = new SearchNode(initial, 0, null);
+        pq.insert(current);
 
-        while (pq.isEmpty()) {
-            SearchNode currentNode = pq.delMin();
-            if (currentNode.state.isGoal()) {
+        while (!pq.isEmpty()) {
+            current = pq.delMin();
+            if (current.state.isGoal()) {
                 break;
             }
 
-            for (WorldState nextState : currentNode.state.neighbors()) {
-                SearchNode newNode = new SearchNode(nextState, currentNode.numberOfMove + 1, currentNode);
-                if (currentNode.prev != null && nextState.equals(currentNode.prev.state)) {
+            for (WorldState nextState : current.state.neighbors()) {
+                SearchNode node = new SearchNode(nextState, current.numberOfMove + 1, current);
+                if (current.prev != null && nextState.equals(current.prev.state)) {
                     continue;
                 }
 
-                pq.insert(newNode);
+                pq.insert(node);
             }
         }
 
         Stack<WorldState> path = new Stack<>();
-        for (SearchNode p = initialNode; p != null; p = p.prev) {
+        for (SearchNode p = current; p != null; p = p.prev) {
             path.push(p.state);
         }
 
@@ -56,7 +56,7 @@ public class Solver {
     private class SearchNode {
         private WorldState state;
 
-        private int numberOfMove;
+        private int numberOfMove = 0;
 
         private SearchNode prev;
 
@@ -71,8 +71,8 @@ public class Solver {
 
         @Override
         public int compare(SearchNode o1, SearchNode o2) {
-            int edtgOfO1 = 1;
-            int edtgOfO2 = 1;
+            int edtgOfO1 = estimatedDistanceToGoal(o1);
+            int edtgOfO2 = estimatedDistanceToGoal(o2);
             return o1.numberOfMove + edtgOfO1 - o2.numberOfMove - edtgOfO2;
         }
 
