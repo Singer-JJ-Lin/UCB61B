@@ -174,10 +174,10 @@ public class Board implements WorldState {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        int N = size();
-        s.append(N + "\n");
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
+        int number = size();
+        s.append(number + "\n");
+        for (int i = 0; i < number; i++) {
+            for (int j = 0; j < number; j++) {
                 s.append(String.format("%2d ", tileAt(i, j)));
             }
             s.append("\n");
