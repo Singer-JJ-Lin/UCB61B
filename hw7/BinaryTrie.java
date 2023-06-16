@@ -8,13 +8,14 @@ import java.util.HashMap;
 /**
  * @author 老爷保号
  */
-public class BinaryTrie implements Serializable{
+public class BinaryTrie implements Serializable {
 
     private class Node implements Serializable {
         private char ch;
         private double freq;
         private Node left, right;
-        public Node(char ch, double freq, Node left, Node right){
+
+        public Node(char ch, double freq, Node left, Node right) {
             this.ch = ch;
             this.freq = freq;
             this.left = left;
@@ -28,50 +29,50 @@ public class BinaryTrie implements Serializable{
 
     private StringBuilder bitSequeneceOfChar = new StringBuilder();
 
-    public BinaryTrie(Map<Character, Integer> frequencyTable){
+    public BinaryTrie(Map<Character, Integer> frequencyTable) {
         Comparator<Node> cmp = new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                if(o1.freq > o2.freq){
+                if (o1.freq > o2.freq) {
                     return 1;
-                }else{
+                } else {
                     return -1;
                 }
             }
         };
         PriorityQueue<Node> pq = new PriorityQueue<>(cmp);
         Iterator<Character> i = frequencyTable.keySet().iterator();
-        while(i.hasNext()){
+        while (i.hasNext()) {
             char ch = i.next();
             double freq = frequencyTable.get(ch);
-            pq.add(new Node(ch,freq,null,null));
+            pq.add(new Node(ch, freq, null, null));
         }
 
-        while(pq.size() > 1){
+        while (pq.size() > 1) {
             Node left = pq.poll();
             Node right = pq.poll();
-            Node parent = new Node('\0',left.freq + right.freq, left, right);
+            Node parent = new Node('\0', left.freq + right.freq, left, right);
             pq.add(parent);
         }
         root = pq.poll();
     }
 
-    private boolean isLeaf(Node x){
+    private boolean isLeaf(Node x) {
         return (x.left == null && x.right == null);
     }
 
-    public Match longestPrefixMatch(BitSequence querySequence){
+    public Match longestPrefixMatch(BitSequence querySequence) {
         Node p = root;
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < querySequence.length(); i++){
+        for (int i = 0; i < querySequence.length(); i++) {
             int num = querySequence.bitAt(i);
-            if(num == 0){
+            if (num == 0) {
                 p = p.left;
-            }else{
+            } else {
                 p = p.right;
             }
             sb.append(num);
-            if(isLeaf(p)){
+            if (isLeaf(p)) {
                 break;
             }
         }
@@ -79,17 +80,17 @@ public class BinaryTrie implements Serializable{
         return new Match(bs, p.ch);
     }
 
-    public Map<Character, BitSequence> buildLookupTable(){
+    public Map<Character, BitSequence> buildLookupTable() {
         returnMap = new HashMap<>();
         bitSequeneceOfChar = new StringBuilder();
         traverse(root);
         return returnMap;
     }
 
-    private void traverse(Node x){
-        if(isLeaf(x)){
+    private void traverse(Node x) {
+        if (isLeaf(x)) {
             BitSequence bs = new BitSequence(bitSequeneceOfChar.toString());
-            returnMap.put(x.ch,bs);
+            returnMap.put(x.ch, bs);
             return;
         }
         bitSequeneceOfChar.append(0);
