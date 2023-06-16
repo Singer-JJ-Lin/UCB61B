@@ -19,13 +19,19 @@ public class Plip extends Creature {
     private int g;
     /** blue color. */
     private int b;
+    /** fraction of energy to retain when replicating. */
+    private double repEnergyRetained = 0.5;
+    /** fraction of energy to bestow upon offspring. */
+    private double repEnergyGiven = 0.5;
+    /** probability of taking a move when ample space available. */
+    private double moveProbability = 0.5;
 
     /** creates plip with energy equal to E. */
     public Plip(double e) {
         super("plip");
-        r = 0;
+        r = 99;
         g = 0;
-        b = 0;
+        b = 76;
         energy = e;
     }
 
@@ -41,12 +47,14 @@ public class Plip extends Creature {
      *  linearly in between these two extremes. It's not absolutely vital
      *  that you get this exactly correct.
      */
+    @Override
     public Color color() {
-        g = 63;
+        g = 63 + (int)((energy / 2.0) * (255 - 63));
         return color(r, g, b);
     }
 
     /** Do nothing with C, Plips are pacifists. */
+    @Override
     public void attack(Creature c) {
     }
 
@@ -54,20 +62,31 @@ public class Plip extends Creature {
      *  to avoid the magic number warning, you'll need to make a
      *  private static final variable. This is not required for this lab.
      */
+    @Override
     public void move() {
+        energy = energy - 0.15;
     }
 
 
     /** Plips gain 0.2 energy when staying due to photosynthesis. */
+    @Override
     public void stay() {
+        energy = energy + 0.2;
+        if(energy > 2){
+            energy = 2;
+        }
+
     }
 
     /** Plips and their offspring each get 50% of the energy, with none
      *  lost to the process. Now that's efficiency! Returns a baby
      *  Plip.
      */
+    @Override
     public Plip replicate() {
-        return this;
+        energy = energy * repEnergyRetained;
+        double babyEnergy = energy * repEnergyGiven;
+        return new Plip(babyEnergy);
     }
 
     /** Plips take exactly the following actions based on NEIGHBORS:
@@ -80,7 +99,23 @@ public class Plip extends Creature {
      *  scoop on how Actions work. See SampleCreature.chooseAction()
      *  for an example to follow.
      */
+    @Override
     public Action chooseAction(Map<Direction, Occupant> neighbors) {
+        List<Direction> empties = getNeighborsOfType(neighbors, "empty");
+        List<Direction> clorus = getNeighborsOfType(neighbors, "clorus");
+        if (empties.size() == 0){
+            return new Action(Action.ActionType.STAY);
+        }
+        if(energy >= 1){
+            Direction moveDir = HugLifeUtils.randomEntry(empties);
+            return new Action(Action.ActionType.REPLICATE,moveDir);
+        }
+        if(!clorus.isEmpty()){
+            if (HugLifeUtils.random() < moveProbability) {
+                Direction moveDir = HugLifeUtils.randomEntry(empties);
+                return new Action(Action.ActionType.MOVE, moveDir);
+            }
+        }
         return new Action(Action.ActionType.STAY);
     }
 
