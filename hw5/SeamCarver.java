@@ -1,7 +1,7 @@
 import edu.princeton.cs.algs4.Picture;
 
 public class SeamCarver {
-    private final Picture p;
+    private Picture p;
     private int width;
     private int height;
     private boolean horizontal = false;
